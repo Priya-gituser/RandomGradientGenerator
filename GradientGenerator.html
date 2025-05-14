@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Random Gradient color generator by using HTML, CSS and Java Script"
+    />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="Priya Singh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Gradient Generator</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-family: cursive;
+        color: black;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50px;
+        background-color: #ffffff88;
+        backdrop-filter: blur(5px);
+        margin-top: 20px;
+        font-family: cursive;
+      }
+
+      #gradientCode {
+        margin-top: 20px;
+        font-family: monospace;
+        background: #ffffff88;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: all;
+        font-family: cursive;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click the Button to Generate a Gradient ! </h1>
+    <button onclick="setRandomGradient()">Generate Gradient</button>
+    <div id="gradientCode" onclick="copyGradientCode()">Gradient Code</div>
+
+    <!-- ========== Start Scripting Section ========== -->
+
+    <script>
+
+      // Function to get a random hex color
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+
+      let currentGradient = "";
+
+
+      // Function to set random gradient
+      function setRandomGradient() {
+        const color1 = getRandomColor(); //getRandomColor function called here.
+        const color2 = getRandomColor(); //getRandomColor function called here.
+        currentGradient = `linear-gradient(to right, ${color1}, ${color2})`;
+        document.body.style.background = currentGradient;
+        document.getElementById("gradientCode").textContent = currentGradient;
+
+
+ // Change button color too
+ const button = document.querySelector("button");
+        button.style.background = currentGradient;
+      
+        
+      };
+
+
+
+
+      // Function to copy gradient CSS to clipboard
+      function copyGradientCode() {
+        navigator.clipboard.writeText(currentGradient).then(() => {
+          alert("Gradient Color copied!");
+        });
+      };
+
+      // Set an initial gradient immediately
+      setRandomGradient();
+    </script>
+
+    <!-- ========== End Scripting Section ========== -->
+  </body>
+</html>
